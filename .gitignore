@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+*.egg-info/
+
+# PyTest
+.pytest_cache/
+report.html
+assets/
+
+# IDE
+.vscode/
+.idea/
+
