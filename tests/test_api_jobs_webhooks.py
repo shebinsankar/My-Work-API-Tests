@@ -97,15 +97,14 @@ def test_webhook_callback_and_verifiy(base_url, api_session, webhook_url, job_pa
         f"Webhook callback sent - Job {callback_payload['jobId']}: {callback_payload['status']}")
 
     # Wait briefly for webhook.site to process the request
-    time.sleep(2)
+    time.sleep(2)  # To Do - try removing this sleep later
 
     # Fetch the last received request from webhook.site API
     webhook_api_url = f"https://webhook.site/token/{webhook_token}/requests?sorting=newest"
 
     fetch_response = api_session.get(webhook_api_url)
 
-    assert fetch_response.status_code == 200, \
-        f"Failed to fetch webhook data with status {fetch_response.status_code}"
+    assert fetch_response.status_code == 200, f"Failed to fetch webhook data with status {fetch_response.status_code}"
 
     webhook_data = fetch_response.json()
     print("Successfully fetched webhook data")

@@ -1,5 +1,7 @@
 import pytest
 import requests
+import uuid
+from datetime import datetime
 
 
 @pytest.fixture(scope="session")
@@ -28,8 +30,19 @@ def webhook_url():
 
 @pytest.fixture
 def job_payload():
-    """Job payload for POST requests"""
+    """Job payload for POST requests with unique identifier"""
+    unique_id = str(uuid.uuid4())
+    timestamp = datetime.now().isoformat()
+
     return {
         "userId": 1,
-        "action": "create_job"
+        "action": "create_job",
+        "testRunId": unique_id,  # Unique identifier
+        "timestamp": timestamp
     }
+
+
+@pytest.fixture
+def unique_test_id():
+    """Generate a unique test identifier for data isolation"""
+    return str(uuid.uuid4())
